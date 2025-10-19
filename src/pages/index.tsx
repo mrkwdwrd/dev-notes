@@ -5,7 +5,9 @@ export default function Home({ allPosts }: { allPosts: AllPosts }) {
  return (
   <>
     <ul>
-       {allPosts}
+       {allPosts.map(post => (
+         <li key="{post.slug}">{post.meta.title}</li>
+       ))}
     </ul>
   </>
  )
