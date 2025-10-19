@@ -30,11 +30,14 @@ export function postsIndex() {
     // parse file data
     const post = matter(fileContent)
     const slug = filename.replace(/\.md$/, '')
+    const date = new Date(post.data.date)
     return {
       slug,
-      meta: post.data
+      title: post.data.title,
+      date: `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+      excerpt: post.data.excerpt
     }
-  })
+  }).sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
 export async function postShow(slug: string) {
@@ -49,7 +52,7 @@ export async function postShow(slug: string) {
   return {
     slug,
     title: post.data.title,
-    date: post.data.date,
+    date: new Date(post.data.date).toDateString(),
     content: htmlContent
 
   }
