@@ -22,5 +22,4 @@ export const getStaticProps: GetStaticProps<{ allPosts: AllPosts }> = async () =
       allPosts
     }
   }
-
 }
